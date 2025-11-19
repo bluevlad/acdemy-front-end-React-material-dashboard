@@ -41,6 +41,7 @@ import Tables from "layouts/tables";
 import Billing from "layouts/billing";
 import Board from "layouts/board";
 import Member from "layouts/member";
+import Exam from "layouts/exam";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
@@ -72,6 +73,14 @@ const routes = [
     icon: <Icon fontSize="small">notifications</Icon>,
     route: "/member",
     component: <Member />,
+  },
+  {
+    type: "collapse",
+    name: "Exam",
+    key: "Exam",
+    icon: <Icon fontSize="small">notifications</Icon>,
+    route: "/exam",
+    component: <Exam />,
   },
   {
     type: "collapse",
