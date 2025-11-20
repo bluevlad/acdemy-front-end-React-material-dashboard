@@ -1,227 +1,352 @@
-# [Material Dashboard 2 React](http://demos.creative-tim.com/material-dashboard-react/#/dashboard?ref=readme-mdr) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?url=https://www.creative-tim.com/product/material-dashboard-react&text=Check%20Material%20Dashboard%202%20react%20made%20by%20@CreativeTim%20#webdesign%20#dashboard%20#materialdesign%20#react%20https://www.creative-tim.com/product/material-dashboard-react)
+# Academy Front-End React Material Dashboard
 
-![version](https://img.shields.io/badge/version-2.2.0-blue.svg) [![GitHub issues open](https://img.shields.io/github/issues/creativetimofficial/material-dashboard-react.svg)](https://github.com/creativetimofficial/material-dashboard-react/issues?q=is%3Aopen+is%3Aissue) [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/creativetimofficial/material-dashboard-react.svg)](https://github.com/creativetimofficial/material-dashboard-react/issues?q=is%3Aissue+is%3Aclosed)
+React와 Material Dashboard 2를 기반으로 한 학원 관리 시스템 프론트엔드 애플리케이션입니다.
 
-![Image](https://s3.amazonaws.com/creativetim_bucket/products/71/original/material-dashboard-react.jpg?1638950990)
+## 📋 목차
 
-Material Dashboard 2 React is our newest free MUI Admin Template based on React. If you’re a developer looking to create an admin dashboard that is developer-friendly, rich with features, and highly customisable, here is your match. Our innovative MUI & React dashboard comes with a beautiful design inspired by Google's Material Design and it will help you create stunning websites & web apps to delight your clients.
+- [프로젝트 소개](#프로젝트-소개)
+- [주요 기능](#주요-기능)
+- [기술 스택](#기술-스택)
+- [시작하기](#시작하기)
+- [프로젝트 구조](#프로젝트-구조)
+- [API 연동](#api-연동)
+- [라이선스](#라이선스)
 
-**Fully Coded Elements**
-Material Dashboard 2 React is built with over 70 frontend individual elements, like buttons, inputs, navbars, nav tabs, cards, or alerts, giving you the freedom of choosing and combining. All components can take variations in color, which you can easily modify using MUI styled() API and sx prop. You will save a lot of time going from prototyping to full-functional code because all elements are implemented.
+## 🎯 프로젝트 소개
 
-This free MUI & React Dashboard is coming with prebuilt design blocks, so the development process is seamless,
-switching from our pages to the real website is very easy to be done.
+Academy Front-End는 학원 관리를 위한 현대적인 웹 애플리케이션입니다. Material Design 2를 기반으로 한 아름답고 직관적인 UI를 제공하며, 시험 관리, 회원 관리, 게시판, 메뉴 관리 등의 기능을 포함합니다.
 
-Special thanks go to:
+## ✨ 주요 기능
 
-- [Nepcha Analytics](https://nepcha.com?ref=readme) for the analytics tool. Nepcha is already integrated with Material Dashboard React. You can use it to gain insights into your sources of traffic.
+### 1. **대시보드**
+- 시스템 전체 현황 모니터링
+- 주요 지표 시각화
 
-**Documentation built by Developers**
+### 2. **시험 관리 (Exam)**
+- 시험 목록 조회 및 관리
+- 시험 응시 및 재응시 기능
+- 시험 결과 확인
+- 시험 문제 관리
 
-Each element is well presented in very complex documentation.
+### 3. **회원 관리 (Member)**
+- 회원 정보 조회 및 관리
+- 회원 등록 및 수정
 
-You can read more about the [documentation here](https://www.creative-tim.com/learning-lab/react/overview/material-dashboard/).
+### 4. **게시판 (Board)**
+- 공지사항 및 일반 게시글 관리
+- 페이지네이션 지원
+- 게시글 상세 보기
 
-**Example Pages**
+### 5. **메뉴 관리 (Menu)**
+- 계층적 메뉴 구조 관리
+- 트리뷰와 테이블뷰 전환 기능
+- 메뉴 아이콘 및 URL 관리
+- 메뉴 사용 여부 설정
+- 메뉴 깊이(depth) 관리
 
-If you want to get inspiration or just show something directly to your clients, you can jump-start your development with our pre-built example pages. You will be able to quickly set up the basic structure for your web project.
+### 6. **인증**
+- 로그인 / 로그아웃
+- 회원가입
+- 프로필 관리
 
-View [example pages here](https://demos.creative-tim.com/material-dashboard-react/#/dashboard).
+## 🛠 기술 스택
 
-**HELPFUL LINKS**
+### Core
+- **React** 18.x - UI 라이브러리
+- **React Router** 6.x - 라우팅
+- **Material-UI (MUI)** 5.x - UI 컴포넌트 프레임워크
 
-- View [Github Repository](https://github.com/creativetimofficial/material-dashboard-react)
-- Check [FAQ Page](https://www.creative-tim.com/faq)
+### State Management & Data Fetching
+- **React Query** (@tanstack/react-query) - 서버 상태 관리
+- **React Context API** - 전역 상태 관리
 
-#### Special thanks
+### HTTP Client
+- **SuperAgent** - HTTP 요청 라이브러리
 
-During the development of this dashboard, we have used many existing resources from awesome developers. We want to thank them for providing their tools open source:
+### Styling
+- **Emotion** - CSS-in-JS
+- **Material Dashboard 2 Theme** - 커스텀 테마
 
-- [MUI](https://mui.com/) - The React UI library for faster and easier web development.
-- [React ChartJS 2](http://reactchartjs.github.io/react-chartjs-2/#/) - Simple yet flexible React charting for designers & developers.
-- [ChromaJS](https://gka.github.io/chroma.js/) - A small-ish zero-dependency JavaScript library for all kinds of color conversions and color scales.
+### Additional Libraries
+- **@mui/x-tree-view** - 트리 구조 UI
+- **@mui/icons-material** - Material 아이콘
+- **React ChartJS 2** - 차트 시각화
+- **ChromaJS** - 색상 변환
 
-Let us know your thoughts below. And good luck with development!
+## 🚀 시작하기
 
-## Table of Contents
+### 필수 요구사항
 
-- [Versions](#versions)
-- [Demo](#demo)
-- [Quick Start](#quick-start)
-- [Deploy](#deploy)
-- [Documentation](#documentation)
-- [File Structure](#file-structure)
-- [Browser Support](#browser-support)
-- [Resources](#resources)
-- [Reporting Issues](#reporting-issues)
-- [Technical Support or Questions](#technical-support-or-questions)
-- [Licensing](#licensing)
-- [Useful Links](#useful-links)
+- **Node.js** 14.x 이상
+- **npm** 또는 **yarn**
 
-## Versions
+### 설치
 
-[<img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/react-logo.png?raw=true" width="60" height="60" />](https://www.creative-tim.com/product/material-dashboard-react?ref=readme-mdr)
+```bash
+# 저장소 클론
+git clone <repository-url>
 
-| React |
-| ----- |
+# 프로젝트 디렉토리로 이동
+cd acdemy-front-end-React-material-dashboard
 
-| [![Material Dashboard React](https://s3.amazonaws.com/creativetim_bucket/products/71/thumb/material-dashboard-react.jpg?1638950990)](http://demos.creative-tim.com/material-dashboard-react/#/dashboard?ref=readme-mdr)
-
-## Demo
-
-- [Dashboard](http://demos.creative-tim.com/material-dashboard-react/#/dashboard?ref=readme-sudr)
-- [Profile](https://demos.creative-tim.com/material-dashboard-react/#/profile?ref=readme-sudr)
-- [RTL](https://demos.creative-tim.com/material-dashboard-react/#/rtl?ref=readme-sudr)
-- [Sign In](https://demos.creative-tim.com/material-dashboard-react/#/authentication/sign-in?ref=readme-sudr)
-- [Sign Up](https://demos.creative-tim.com/material-dashboard-react/#/authentication/sign-up?ref=readme-sudr)
-
-[View More](https://demos.creative-tim.com/material-dashboard-react/#/dashboard?ref=readme-mdr).
-
-## Quick start
-
-Quick start options:
-
-- Download from [Creative Tim](https://www.creative-tim.com/product/material-dashboard-react?ref=readme-mdr).
-
-## Terminal Commands
-
-1. Download and Install NodeJs LTS version from [NodeJs Official Page](https://nodejs.org/en/download/).
-2. Navigate to the root ./ directory of the product and run `yarn install` or `npm install` to install our local dependencies.
-
-## Deploy
-
-:rocket: You can deploy your own version of the template to Genezio with one click:
-
-[![Deploy to Genezio](https://raw.githubusercontent.com/Genez-io/graphics/main/svg/deploy-button.svg)](https://app.genez.io/start/deploy?repository=https://github.com/creativetimofficial/material-dashboard-react&utm_source=github&utm_medium=referral&utm_campaign=github-creativetim&utm_term=deploy-project&utm_content=button-head)
-
-## Documentation
-
-The documentation for the Material Dashboard is hosted at our [website](https://www.creative-tim.com/learning-lab/react/overview/material-dashboard/?ref=readme-mdr).
-
-### What's included
-
-Within the download you'll find the following directories and files:
-
-```
-material-dashboard-react
-    ├── public
-    │   ├── apple-icon.png
-    │   ├── favicon.png
-    │   ├── index.html
-    │   ├── manifest.json
-    │   └── robots.txt
-    ├── src
-    │   ├── assets
-    │   │   ├── images
-    │   │   └── theme
-    │   │       ├── base
-    │   │       ├── components
-    │   │       ├── functions
-    │   │       ├── index.js
-    │   │       └── theme-rtl.js
-    │   │   └── theme-dark
-    │   │       ├── base
-    │   │       ├── components
-    │   │       ├── functions
-    │   │       ├── index.js
-    │   │       └── theme-rtl.js
-    │   ├── components
-    │   │   ├── MDAlert
-    │   │   ├── MDAvatar
-    │   │   ├── MDBadge
-    │   │   ├── MDBox
-    │   │   ├── MDButton
-    │   │   ├── MDInput
-    │   │   ├── MDPagination
-    │   │   ├── MDProgress
-    │   │   ├── MDSnackbar
-    │   │   └── MDTypography
-    │   ├── context
-    │   ├── examples
-    │   │   ├── Breadcrumbs
-    │   │   ├── Cards
-    │   │   ├── Charts
-    │   │   ├── Configurator
-    │   │   ├── Footer
-    │   │   ├── Items
-    │   │   ├── LayoutContainers
-    │   │   ├── Lists
-    │   │   ├── Navbars
-    │   │   ├── Sidenav
-    │   │   ├── Tables
-    │   │   └── Timeline
-    │   ├── layouts
-    │   │   ├── authentication
-    │   │   ├── billing
-    │   │   ├── dashboard
-    │   │   ├── notifications
-    │   │   ├── profile
-    │   │   ├── rtl
-    │   │   └── tables
-    │   ├── App.js
-    │   ├── index.js
-    │   └── routes.js
-    ├── .eslintrc.json
-    ├── .prettierrc.json
-    ├── CHANGELOG.md
-    ├── ISSUE_TEMPLATE.md
-    ├── jsconfig.json
-    ├── LICENSE.md
-    ├── package.json
-    └── README.md
+# 의존성 설치
+npm install
+# 또는
+yarn install
 ```
 
-## Browser Support
+### 개발 서버 실행
 
-At present, we officially aim to support the last two versions of the following browsers:
+```bash
+npm start
+# 또는
+yarn start
+```
 
-<img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/chrome.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/firefox.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/edge.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/safari.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/opera.png" width="64" height="64">
+브라우저에서 [http://localhost:3000](http://localhost:3000)으로 접속합니다.
 
-## Resources
+### 빌드
 
-- [Live Preview](https://demos.creative-tim.com/material-dashboard-react/#/dashboard?ref=readme-mdr)
-- [Download Page](https://www.creative-tim.com/product/material-dashboard-react?ref=readme-mdr)
-- Documentation is [here](https://www.creative-tim.com/learning-lab/react/overview/material-dashboard/?ref=readme-mdr)
-- [License Agreement](https://www.creative-tim.com/license?ref=readme-mdr)
-- [Support](https://www.creative-tim.com/contact-us?ref=readme-mdr)
-- Issues: [Github Issues Page](https://github.com/creativetimofficial/material-dashboard-react/issues)
-- [Nepcha Analytics](https://nepcha.com?ref=readme) - Analytics tool for your website
+```bash
+npm run build
+# 또는
+yarn build
+```
 
-## Reporting Issues
+빌드된 파일은 `build/` 디렉토리에 생성됩니다.
 
-We use GitHub Issues as the official bug tracker for the Material Dashboard React. Here are some advices for our users that want to report an issue:
+## 📁 프로젝트 구조
 
-1. Make sure that you are using the latest version of the Material Dashboard React. Check the CHANGELOG from your dashboard on our [website](https://www.creative-tim.com/product/material-dashboard-react?ref=readme-mdr).
-2. Providing us reproducible steps for the issue will shorten the time it takes for it to be fixed.
-3. Some issues may be browser specific, so specifying in what browser you encountered the issue might help.
+```
+acdemy-front-end-React-material-dashboard/
+├── public/                      # 정적 파일
+│   ├── index.html
+│   ├── favicon.png
+│   └── manifest.json
+├── src/
+│   ├── api/                     # API 통신 로직
+│   │   ├── board/              # 게시판 API
+│   │   ├── exam/               # 시험 API
+│   │   ├── member/             # 회원 API
+│   │   └── menu/               # 메뉴 API
+│   ├── assets/                  # 이미지, 테마 등
+│   │   ├── images/
+│   │   ├── theme/              # 라이트 테마
+│   │   └── theme-dark/         # 다크 테마
+│   ├── components/              # 재사용 가능한 컴포넌트
+│   │   ├── MDBox/
+│   │   ├── MDButton/
+│   │   ├── MDInput/
+│   │   ├── MDTypography/
+│   │   └── common/
+│   ├── config/                  # 설정 파일
+│   │   └── headersConfig.js
+│   ├── constants/               # 상수 정의
+│   │   └── index.js            # API 기본 URL 등
+│   ├── context/                 # React Context
+│   │   └── index.js
+│   ├── examples/                # 레이아웃 컴포넌트
+│   │   ├── Breadcrumbs/
+│   │   ├── Cards/
+│   │   ├── Footer/
+│   │   ├── Navbars/
+│   │   ├── Sidenav/            # 사이드바 네비게이션
+│   │   └── Tables/
+│   ├── layouts/                 # 페이지 레이아웃
+│   │   ├── authentication/     # 인증 페이지
+│   │   ├── board/              # 게시판 페이지
+│   │   ├── dashboard/          # 대시보드
+│   │   ├── exam/               # 시험 관리
+│   │   ├── member/             # 회원 관리
+│   │   ├── menu/               # 메뉴 관리
+│   │   └── profile/            # 프로필
+│   ├── stores/                  # 상태 관리
+│   ├── utils/                   # 유틸리티 함수
+│   │   ├── commonUtils.js
+│   │   ├── request.js
+│   │   └── storage.js
+│   ├── App.js                   # 앱 진입점
+│   ├── index.js                 # 렌더링 진입점
+│   └── routes.js                # 라우트 정의
+├── package.json
+└── README.md
+```
 
-## Technical Support or Questions
+## 🔌 API 연동
 
-If you have questions or need help integrating the product please [contact us](https://www.creative-tim.com/contact-us?ref=readme-mdr) instead of opening an issue.
+### API 기본 설정
 
-## Licensing
+API 기본 URL은 `src/constants/index.js`에서 설정합니다:
 
-- Copyright 2023 [Creative Tim](https://www.creative-tim.com?ref=readme-mdr)
-- Creative Tim [license](https://www.creative-tim.com/license?ref=readme-mdr)
+```javascript
+export const BASE_API = "http://localhost:8080/api";
+```
 
-## Useful Links
+### API 엔드포인트
 
-- [More products](https://www.creative-tim.com/templates?ref=readme-mdr) from Creative Tim
+#### 게시판 API
+- `GET /api/board/getBoardList?curPage={page}` - 게시판 목록 조회
 
-- [Tutorials](https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w)
+#### 시험 API
+- `GET /api/exam/getExamList?curPage={page}&userId={userId}` - 시험 목록 조회
+- `GET /api/exam/getExamView?examId={examId}` - 시험 상세 조회
+- `POST /api/exam/getExamView` - 시험 응시 가능 여부 확인
+- `GET /api/exam/getExamEdit?examId={examId}&userId={userId}` - 시험 결과 조회
 
-- [Freebies](https://www.creative-tim.com/bootstrap-themes/free?ref=readme-mdr) from Creative Tim
+#### 메뉴 API
+- `GET /api/menu/getMenuTree` - 메뉴 트리 구조 조회
 
-- [Affiliate Program](https://www.creative-tim.com/affiliates/new?ref=readme-mdr) (earn money)
+### API 응답 예시
 
-##### Social Media
+#### 메뉴 트리 API 응답 구조
+```json
+{
+  "menuTree": [
+    {
+      "isUse": "Y",
+      "menuNo": 1,
+      "menuUrl": "",
+      "menuIcon": "icon-navigation",
+      "children": [
+        {
+          "isUse": "Y",
+          "menuNo": 2,
+          "menuUrl": "",
+          "menuIcon": "feather icon-home",
+          "children": [],
+          "menuTitle": "Dashboard",
+          "menuDepth": 1,
+          "menuId": "dashboard",
+          "menuUpperId": 1
+        }
+      ],
+      "menuTitle": "Dashboard",
+      "menuDepth": 1,
+      "menuId": "dashboard",
+      "menuUpperId": 1
+    }
+  ]
+}
+```
 
-Twitter: <https://twitter.com/CreativeTim>
+## 🎨 주요 컴포넌트
 
-Facebook: <https://www.facebook.com/CreativeTim>
+### 메뉴 관리 컴포넌트
 
-Dribbble: <https://dribbble.com/creativetim>
+메뉴 관리 화면은 두 가지 뷰 모드를 제공합니다:
 
-Google+: <https://plus.google.com/+CreativetimPage>
+1. **트리뷰**: 계층적 구조를 시각적으로 표현
+2. **테이블뷰**: 모든 메뉴를 플랫한 테이블 형태로 표시
 
-Instagram: <https://instagram.com/creativetimofficial>
+```javascript
+import Menu from "layouts/menu";
+
+// 라우트 설정
+{
+  type: "collapse",
+  name: "Menu",
+  key: "menu",
+  icon: <Icon fontSize="small">menu</Icon>,
+  route: "/menu",
+  component: <Menu />,
+}
+```
+
+### 사이드바 네비게이션
+
+중첩된 메뉴 구조를 지원하는 사이드바:
+
+```javascript
+// routes.js에서 중첩 메뉴 설정
+{
+  type: "collapse",
+  name: "Parent Menu",
+  key: "parent",
+  icon: <Icon>folder</Icon>,
+  route: "/parent",
+  component: <Parent />,
+  collapse: [
+    {
+      type: "collapse",
+      name: "Child Menu",
+      key: "child",
+      route: "/child",
+      component: <Child />,
+    }
+  ]
+}
+```
+
+## 🌐 브라우저 지원
+
+현재 다음 브라우저의 최신 2개 버전을 공식 지원합니다:
+
+- Chrome
+- Firefox
+- Edge
+- Safari
+- Opera
+
+## 📝 개발 가이드
+
+### 새로운 페이지 추가하기
+
+1. `src/layouts/` 디렉토리에 새 컴포넌트 생성
+2. `src/api/` 디렉토리에 API 함수 작성
+3. `src/routes.js`에 라우트 추가
+4. 필요시 사이드바 메뉴 항목 추가
+
+### 스타일링
+
+Material Dashboard 2의 테마 시스템을 사용합니다:
+
+```javascript
+import MDBox from "components/MDBox";
+import MDTypography from "components/MDTypography";
+
+<MDBox
+  bgColor="info"
+  variant="gradient"
+  borderRadius="lg"
+  coloredShadow="info"
+>
+  <MDTypography variant="h6" color="white">
+    Title
+  </MDTypography>
+</MDBox>
+```
+
+## 📄 라이선스
+
+MIT License
+
+Copyright (c) 2023
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## 🙏 감사의 말
+
+이 프로젝트는 다음의 오픈소스 프로젝트들을 기반으로 합니다:
+
+- [Material Dashboard 2 React](https://www.creative-tim.com/product/material-dashboard-react) by Creative Tim
+- [Material-UI (MUI)](https://mui.com/) - React UI 라이브러리
+- [React ChartJS 2](http://reactchartjs.github.io/react-chartjs-2/) - 차트 라이브러리
+- [ChromaJS](https://gka.github.io/chroma.js/) - 색상 변환 라이브러리
