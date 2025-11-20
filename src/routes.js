@@ -42,6 +42,7 @@ import Billing from "layouts/billing";
 import Board from "layouts/board";
 import Member from "layouts/member";
 import Exam from "layouts/exam";
+import Menu from "layouts/menu";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
@@ -78,9 +79,17 @@ const routes = [
     type: "collapse",
     name: "Exam",
     key: "Exam",
-    icon: <Icon fontSize="small">notifications</Icon>,
+    icon: <Icon fontSize="small">quiz</Icon>,
     route: "/exam",
     component: <Exam />,
+  },
+  {
+    type: "collapse",
+    name: "Menu",
+    key: "menu",
+    icon: <Icon fontSize="small">menu</Icon>,
+    route: "/menu",
+    component: <Menu />,
   },
   {
     type: "collapse",
