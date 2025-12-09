@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Card from "@mui/material/Card";
 import Switch from "@mui/material/Switch";
 import Grid from "@mui/material/Grid";
@@ -13,14 +13,14 @@ import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
-import { useAuth } from "context/AuthContext";
+import { login } from "api/login";
 
 function Basic() {
   const [rememberMe, setRememberMe] = useState(false);
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
@@ -28,8 +28,39 @@ function Basic() {
     e.preventDefault();
     setError("");
     try {
-      await login({ id: id, password });
+      const token = sessionStorage.getItem("token") || "";
+      const payload = { userId: id, userPwd: password, token: token };
+
+      const response = await login(payload);
+
+      if (response && response.token) {
+        sessionStorage.setItem("token", response.token);
+
+        const userProfile = {
+          userId: response.userId,
+          userNm: response.userNm,
+          userPwd: response.userPwd,
+          sex: response.sex,
+          userRole: response.userRole,
+          adminRole: response.adminRole,
+          birthDay: response.birthDay,
+          email: response.email,
+          zipCode: response.zipCode,
+          address1: response.address1,
+          address2: response.address2,
+          userPoint: response.userPoint,
+          memo: response.memo,
+          pic: response.pic,
+          isokSms: response.isokSms,
+          isokEmail: response.isokEmail,
+        };
+        sessionStorage.setItem("userProfile", JSON.stringify(userProfile));
+        navigate("/dashboard");
+      } else {
+        throw new Error("Login failed: No token received");
+      }
     } catch (err) {
+      console.error(err);
       setError(err.message || "Login failed");
     }
   };
