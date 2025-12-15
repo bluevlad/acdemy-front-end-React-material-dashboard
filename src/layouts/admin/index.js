@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { useState } from "react";
 
 // @mui material components
@@ -18,6 +19,7 @@ import Footer from "examples/Footer";
 // Admin Sub-Layouts
 import AdminAuth from "layouts/admin/auth";
 import AdminCode from "layouts/admin/code";
+import AdminBanner from "layouts/admin/banner";
 import Menu from "layouts/menu"; // Re-use existing Menu layout
 
 function Admin() {
@@ -58,6 +60,14 @@ function Admin() {
                                             </Icon>
                                         }
                                     />
+                                    <Tab
+                                        label="배너 관리"
+                                        icon={
+                                            <Icon fontSize="medium" sx={{ mt: -0.25 }}>
+                                                image
+                                            </Icon>
+                                        }
+                                    />
                                 </Tabs>
                             </AppBar>
                         </MDBox>
@@ -66,6 +76,7 @@ function Admin() {
                             {tabValue === 0 && <AdminAuth />}
                             {tabValue === 1 && <AdminCode />}
                             {tabValue === 2 && <Menu />}
+                            {tabValue === 3 && <AdminBanner />}
                         </MDBox>
                     </Grid>
                 </Grid>

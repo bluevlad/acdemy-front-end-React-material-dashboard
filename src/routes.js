@@ -44,7 +44,12 @@ import Member from "layouts/member";
 import Exam from "layouts/exam";
 import Menu from "layouts/menu";
 import Profile from "layouts/profile";
-import Admin from "layouts/admin";
+// Admin Components
+import AdminCode from "layouts/admin/code";
+import AdminAuth from "layouts/admin/auth";
+import AdminMenu from "layouts/admin/menu";
+import AdminBanner from "layouts/admin/banner";
+import UserMenu from "layouts/menu"; // Alias existing Menu layout as UserMenu
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 
@@ -110,11 +115,41 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Admin",
-    key: "admin",
+    name: "운영자관리",
+    key: "admin-management",
     icon: <Icon fontSize="small">admin_panel_settings</Icon>,
-    route: "/admin",
-    component: <Admin />,
+    collapse: [
+      {
+        name: "코드관리",
+        key: "code-management",
+        route: "/admin/code",
+        component: <AdminCode />,
+      },
+      {
+        name: "관리자 메뉴관리",
+        key: "admin-menu-management",
+        route: "/admin/admin-menu",
+        component: <AdminMenu />,
+      },
+      {
+        name: "권한관리",
+        key: "auth-management",
+        route: "/admin/auth",
+        component: <AdminAuth />,
+      },
+      {
+        name: "사용자 메뉴관리",
+        key: "user-menu-management",
+        route: "/admin/user-menu",
+        component: <UserMenu />,
+      },
+      {
+        name: "배너관리",
+        key: "banner-management",
+        route: "/admin/banner",
+        component: <AdminBanner />,
+      },
+    ],
   },
   {
     type: "collapse",

@@ -10,10 +10,6 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import TextField from "@mui/material/TextField";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -27,11 +23,10 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 
 // API
-import { getCodeList, insertCode, updateCode, deleteCode } from "api/admin/code";
+import { getBannerList, insertBanner, updateBanner, deleteBanner } from "api/banner";
 
-function AdminCode() {
-    const [codeList, setCodeList] = useState([]);
-
+function AdminBanner() {
+    const [bannerList, setBannerList] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
@@ -41,22 +36,22 @@ function AdminCode() {
     const [dialogOpen, setDialogOpen] = useState(false);
     const [dialogMode, setDialogMode] = useState("add");
     const [formData, setFormData] = useState({
-        codeNo: "",
-        codeCd: "",
-        codeNm: "",
-        codeVal: "",
-        sysCd: "",
+        bannerCd: "",
+        bannerNm: "",
+        bannerCount: 0,
+        startNum: 1,
+        endNum: 1,
         isUse: "Y",
     });
 
-    const loadCodeData = async () => {
+    const loadBannerData = async () => {
         setLoading(true);
         try {
             const params = {
                 pageIndex: currentPage,
             };
-            const data = await getCodeList(params);
-            setCodeList(data.codeList || []);
+            const data = await getBannerList(params);
+            setBannerList(data.bannerList || []);
             setPaginationInfo(data.paginationInfo || null);
             if (data.paginationInfo) {
                 setTotalPages(
@@ -65,38 +60,38 @@ function AdminCode() {
                 );
             }
         } catch (error) {
-            console.error("Failed to load code data:", error);
+            console.error("Failed to load banner data:", error);
         } finally {
             setLoading(false);
         }
     };
 
     useEffect(() => {
-        loadCodeData();
+        loadBannerData();
     }, [currentPage]);
 
     const handlePageChange = (event, value) => {
         setCurrentPage(value);
     };
 
-    const handleOpenDialog = (mode, code = null) => {
+    const handleOpenDialog = (mode, banner = null) => {
         setDialogMode(mode);
-        if (mode === "edit" && code) {
+        if (mode === "edit" && banner) {
             setFormData({
-                codeNo: code.CODE_NO,
-                codeCd: code.CODE_CD,
-                codeNm: code.CODE_NM,
-                codeVal: code.CODE_VAL,
-                sysCd: code.SYS_CD,
-                isUse: code.ISUSE,
+                bannerCd: banner.bannerCd,
+                bannerNm: banner.bannerNm,
+                bannerCount: banner.bannerCount || 0,
+                startNum: banner.startNum || 1,
+                endNum: banner.endNum || 1,
+                isUse: banner.isUse || "Y",
             });
         } else {
             setFormData({
-                codeNo: "",
-                codeCd: "",
-                codeNm: "",
-                codeVal: "",
-                sysCd: "",
+                bannerCd: "",
+                bannerNm: "",
+                bannerCount: 0,
+                startNum: 1,
+                endNum: 1,
                 isUse: "Y",
             });
         }
@@ -118,52 +113,46 @@ function AdminCode() {
     const handleSubmit = async () => {
         try {
             if (dialogMode === "add") {
-                await insertCode(formData);
+                await insertBanner(formData);
             } else {
-                await updateCode(formData);
+                await updateBanner(formData);
             }
             handleCloseDialog();
-            loadCodeData();
+            loadBannerData();
         } catch (error) {
-            console.error("Error submitting code:", error);
+            console.error("Error submitting banner:", error);
             alert("처리 중 오류가 발생했습니다.");
         }
     };
 
-    const handleDelete = async (codeNo) => {
-        if (window.confirm("정말 삭제하시겠습니까?")) {
+    const handleDelete = async (bannerCd) => {
+        if (window.confirm("정말 삭제하시겠습니까? 연결된 아이템도 모두 삭제됩니다.")) {
             try {
-                await deleteCode(codeNo);
-                loadCodeData();
+                await deleteBanner(bannerCd);
+                loadBannerData();
             } catch (error) {
-                console.error("Error deleting code:", error);
+                console.error("Error deleting banner:", error);
                 alert("삭제 중 오류가 발생했습니다.");
             }
         }
     };
 
     const columns = [
-        { Header: "공통코드명", accessor: "sysNm", align: "left" },
-        { Header: "공통코드", accessor: "sysCd", align: "left" },
-        { Header: "설정코드명", accessor: "codeNm", align: "left" },
-        { Header: "설정코드", accessor: "codeCd", align: "left" },
-        { Header: "설정값", accessor: "codeVal", align: "center" },
+        { Header: "배너코드", accessor: "bannerCd", align: "left" },
+        { Header: "배너명", accessor: "bannerNm", align: "left" },
         { Header: "사용여부", accessor: "isUse", align: "center" },
         { Header: "등록일", accessor: "regDt", align: "center" },
         { Header: "Action", accessor: "action", align: "center" },
     ];
 
-    const rows = codeList.map((code) => ({
-        sysNm: code.SYS_NM,
-        sysCd: code.SYS_CD,
-        codeNm: code.CODE_NM,
-        codeCd: code.CODE_CD,
-        codeVal: code.CODE_VAL,
+    const rows = bannerList.map((banner) => ({
+        bannerCd: banner.bannerCd,
+        bannerNm: banner.bannerNm,
         isUse: (
             <MDBox ml={-1}>
                 <MDBadge
-                    badgeContent={code.ISUSE === "Y" ? "활성" : "비활성"}
-                    color={code.ISUSE === "Y" ? "success" : "dark"}
+                    badgeContent={banner.isUse === "Y" ? "활성" : "비활성"}
+                    color={banner.isUse === "Y" ? "success" : "dark"}
                     variant="gradient"
                     size="sm"
                 />
@@ -171,7 +160,7 @@ function AdminCode() {
         ),
         regDt: (
             <MDTypography variant="caption" color="text">
-                {code.REG_DT}
+                {banner.regDt}
             </MDTypography>
         ),
         action: (
@@ -180,11 +169,16 @@ function AdminCode() {
                     variant="text"
                     color="dark"
                     iconOnly
-                    onClick={() => handleOpenDialog("edit", code)}
+                    onClick={() => handleOpenDialog("edit", banner)}
                 >
                     <Icon>edit</Icon>
                 </MDButton>
-                <MDButton variant="text" color="error" iconOnly onClick={() => handleDelete(code.CODE_NO)}>
+                <MDButton
+                    variant="text"
+                    color="error"
+                    iconOnly
+                    onClick={() => handleDelete(banner.bannerCd)}
+                >
                     <Icon>delete</Icon>
                 </MDButton>
             </MDBox>
@@ -210,7 +204,7 @@ function AdminCode() {
                             alignItems="center"
                         >
                             <MDTypography variant="h6" color="white">
-                                공통코드 관리
+                                배너 관리
                             </MDTypography>
                             <MDButton
                                 variant="contained"
@@ -275,59 +269,58 @@ function AdminCode() {
 
             {/* Dialog */}
             <Dialog open={dialogOpen} onClose={handleCloseDialog} maxWidth="sm" fullWidth>
-                <DialogTitle>{dialogMode === "add" ? "코드 등록" : "코드 수정"}</DialogTitle>
+                <DialogTitle>{dialogMode === "add" ? "배너 등록" : "배너 수정"}</DialogTitle>
                 <DialogContent>
                     <MDBox component="form" pt={2} px={2}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField
                                     fullWidth
-                                    label="시스템 코드 (SYS_CD)"
-                                    name="sysCd"
-                                    value={formData.sysCd}
+                                    label="배너 코드"
+                                    name="bannerCd"
+                                    value={formData.bannerCd}
+                                    onChange={handleFormChange}
+                                    disabled={dialogMode === "edit"}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    fullWidth
+                                    label="배너명"
+                                    name="bannerNm"
+                                    value={formData.bannerNm}
                                     onChange={handleFormChange}
                                 />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
                                     fullWidth
-                                    label="설정 코드 (CODE_CD)"
-                                    name="codeCd"
-                                    value={formData.codeCd}
+                                    type="number"
+                                    label="배너 수"
+                                    name="bannerCount"
+                                    value={formData.bannerCount}
                                     onChange={handleFormChange}
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={6}>
                                 <TextField
                                     fullWidth
-                                    label="설정 코드명 (CODE_NM)"
-                                    name="codeNm"
-                                    value={formData.codeNm}
+                                    type="number"
+                                    label="시작 번호 (File Name Suffix)"
+                                    name="startNum"
+                                    value={formData.startNum}
                                     onChange={handleFormChange}
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={6}>
                                 <TextField
                                     fullWidth
-                                    label="설정값 (CODE_VAL)"
-                                    name="codeVal"
-                                    value={formData.codeVal}
+                                    type="number"
+                                    label="종료 번호 (File Name Suffix)"
+                                    name="endNum"
+                                    value={formData.endNum}
                                     onChange={handleFormChange}
                                 />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <FormControl fullWidth>
-                                    <InputLabel>사용여부</InputLabel>
-                                    <Select
-                                        name="isUse"
-                                        value={formData.isUse}
-                                        label="사용여부"
-                                        onChange={handleFormChange}
-                                    >
-                                        <MenuItem value="Y">사용</MenuItem>
-                                        <MenuItem value="N">미사용</MenuItem>
-                                    </Select>
-                                </FormControl>
                             </Grid>
                         </Grid>
                     </MDBox>
@@ -345,4 +338,4 @@ function AdminCode() {
     );
 }
 
-export default AdminCode;
+export default AdminBanner;
