@@ -1,28 +1,9 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-import { useState, useEffect } from "react";
-
-// @mui material components
-import Icon from "@mui/material/Icon";
-
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+import Icon from "@mui/material/Icon";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -36,31 +17,32 @@ import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
 
 // API
-import { fetchBoardData } from "api/board";
+import { fetchExamData } from "api/exam";
+import { useState, useEffect } from "react";
 
-function Board() {
-  const [boardList, setBoardList] = useState([]);
+function Exam() {
+  const [examList, setExamList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [paginationInfo, setPaginationInfo] = useState(null);
 
   useEffect(() => {
-    const loadBoardData = async () => {
+    const loadExamData = async () => {
       setLoading(true);
       try {
-        const data = await fetchBoardData(currentPage);
-        setBoardList(data.boardList || []);
+        const data = await fetchExamData(currentPage);
+        setExamList(data.examList || []);
         setPaginationInfo(data.paginationInfo || null);
         setTotalPages(data.paginationInfo?.totalPageCount || 1);
       } catch (error) {
-        console.error("Failed to load board data:", error);
+        console.error("Failed to load exam data:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    loadBoardData();
+    loadExamData();
   }, [currentPage]);
 
   const handlePageChange = (event, value) => {
@@ -68,62 +50,61 @@ function Board() {
   };
 
   const columns = [
-    { Header: "게시판구분", accessor: "boardMngSeq", width: "15%", align: "left" },
-    { Header: "게시판번호", accessor: "boardSeq", width: "15%", align: "left" },
-    { Header: "게시판제목", accessor: "subject", width: "15%", align: "left" },
-    { Header: "공지여부", accessor: "noticeTopYn", width: "20%", align: "left" },
-    { Header: "공개여부", accessor: "openYn", align: "center" },
+    { Header: "시험명", accessor: "exam_nm", width: "20%", align: "left" },
+    { Header: "년도", accessor: "exam_year", align: "center" },
+    { Header: "회차", accessor: "exam_round", align: "center" },
+    { Header: "접수기간", accessor: "exam_period", width: "20%", align: "center" },
+    { Header: "시험시간", accessor: "exam_time", align: "center" },
     { Header: "사용여부", accessor: "isUse", align: "center" },
-    { Header: "열람수", accessor: "hits", align: "center" },
-    { Header: "등록일", accessor: "regDt", align: "center" },
-    { Header: "등록자", accessor: "regId", align: "center" },
-    { Header: "action", accessor: "action", align: "center" },
+    { Header: "응시여부", accessor: "use_flag", align: "center" },
+    { Header: "등록일", accessor: "reg_dt", align: "center" },
+    { Header: "Actions", accessor: "action", align: "center" },
   ];
 
-  const rows = boardList.map((board) => ({
-    boardMngSeq: (
+  const rows = examList.map((exam) => ({
+    exam_nm: (
       <MDTypography variant="caption" color="text" fontWeight="medium">
-        {board.boardMngSeq}
+        {exam.exam_nm}
       </MDTypography>
     ),
-    boardSeq: (
-      <MDTypography variant="caption" color="text" fontWeight="medium">
-        {board.boardSeq}
-      </MDTypography>
-    ),
-    subject: (
+    exam_year: (
       <MDTypography variant="caption" color="text" fontWeight="regular">
-        {board.subject}
+        {exam.exam_year}
       </MDTypography>
     ),
-    noticeTopYn: (
-      <MDTypography variant="caption" color="text" fontWeight="medium">
-        {board.noticeTopYn === "Y" ? "공지" : "일반"}
-      </MDTypography>
-    ),
-    openYn: (
+    exam_round: (
       <MDTypography variant="caption" color="text" fontWeight="regular">
-        {board.openYn === "Y" ? "공개" : "비공개"}
+        {exam.exam_round}회
+      </MDTypography>
+    ),
+    exam_period: (
+      <MDTypography variant="caption" color="text" fontWeight="regular">
+        {exam.exam_period}
+      </MDTypography>
+    ),
+    exam_time: (
+      <MDTypography variant="caption" color="text" fontWeight="regular">
+        {exam.exam_time}분
       </MDTypography>
     ),
     isUse: (
-      <MDTypography variant="caption" color="text" fontWeight="medium">
-        {board.isUse === "Y" ? "사용" : "비사용"}
-      </MDTypography>
+      <MDBox ml={-1}>
+        <MDBadge
+          badgeContent={exam.isUse === "Y" ? "사용" : "미사용"}
+          color={exam.isUse === "Y" ? "success" : "dark"}
+          variant="gradient"
+          size="sm"
+        />
+      </MDBox>
     ),
-    hits: (
-      <MDTypography variant="caption" color="text" fontWeight="medium">
-        {board.hits}
-      </MDTypography>
-    ),
-    regDt: (
+    use_flag: (
       <MDTypography variant="caption" color="text" fontWeight="regular">
-        {board.regDt ? new Date(board.regDt).toLocaleDateString("ko-KR") : "-"}
+        {exam.use_flag === "Y" ? "응시가능" : "응시불가"}
       </MDTypography>
     ),
-    regId: (
+    reg_dt: (
       <MDTypography variant="caption" color="text" fontWeight="regular">
-        {board.regId}
+        {exam.reg_dt ? new Date(exam.reg_dt).toLocaleDateString("ko-KR") : "-"}
       </MDTypography>
     ),
     action: (
@@ -151,7 +132,7 @@ function Board() {
                 coloredShadow="info"
               >
                 <MDTypography variant="h6" color="white">
-                  게시판 목록
+                  모의고사 목록
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>
@@ -211,4 +192,4 @@ function Board() {
   );
 }
 
-export default Board;
+export default Exam;
