@@ -44,6 +44,7 @@ import Member from "layouts/member";
 import Exam from "layouts/exam";
 import Menu from "layouts/menu";
 import Profile from "layouts/profile";
+import Admin from "layouts/admin";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 
@@ -106,6 +107,14 @@ const routes = [
     icon: <Icon fontSize="small">receipt_long</Icon>,
     route: "/billing",
     component: <Billing />,
+  },
+  {
+    type: "collapse",
+    name: "Admin",
+    key: "admin",
+    icon: <Icon fontSize="small">admin_panel_settings</Icon>,
+    route: "/admin",
+    component: <Admin />,
   },
   {
     type: "collapse",
