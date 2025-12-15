@@ -39,11 +39,16 @@ Coded by www.creative-tim.com
 import Dashboard from "layouts/dashboard";
 import Tables from "layouts/tables";
 import Billing from "layouts/billing";
-import Board from "layouts/board";
 import Member from "layouts/member";
 import Exam from "layouts/exam";
 import Menu from "layouts/menu";
 import Profile from "layouts/profile";
+// Board Components
+import Board from "layouts/board";
+import BoardAll from "layouts/board/boardAll";
+import BoardManagement from "layouts/board/boardManagement";
+import BoardNotAnswer from "layouts/board/boardNotAnswer";
+import BoardViewManagement from "layouts/board/boardViewManagement";
 // Admin Components
 import AdminCode from "layouts/admin/code";
 import AdminAuth from "layouts/admin/auth";
@@ -67,11 +72,41 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Board",
-    key: "Board",
-    icon: <Icon fontSize="small">notifications</Icon>,
-    route: "/board",
-    component: <Board />,
+    name: "게시판 통합 관리",
+    key: "board-integrated-management",
+    icon: <Icon fontSize="small">dashboard</Icon>,
+    collapse: [
+      {
+        name: "게시판",
+        key: "board-list",
+        route: "/board",
+        component: <Board />,
+      },
+      {
+        name: "전체 게시물 조회",
+        key: "board-all",
+        route: "/board/all",
+        component: <BoardAll />,
+      },
+      {
+        name: "게시판 관리",
+        key: "board-management",
+        route: "/board/management",
+        component: <BoardManagement />,
+      },
+      {
+        name: "미응답 게시물 관리",
+        key: "board-not-answer",
+        route: "/board/not-answer",
+        component: <BoardNotAnswer />,
+      },
+      {
+        name: "게시판 뷰 관리",
+        key: "board-view-management",
+        route: "/board/view-management",
+        component: <BoardViewManagement />,
+      },
+    ],
   },
   {
     type: "collapse",

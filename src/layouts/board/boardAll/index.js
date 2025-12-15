@@ -3,24 +3,24 @@ import { useState, useEffect } from "react";
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-import Icon from "@mui/material/Icon";
-import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
+import MDBadge from "components/MDBadge";
 
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 
 // API
 import { getBoardList } from "api/board";
 
-function Board() {
+function BoardAll() {
   const [boardList, setBoardList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -28,15 +28,15 @@ function Board() {
   const [paginationInfo, setPaginationInfo] = useState(null);
 
   useEffect(() => {
-    loadBoardData();
+    loadData();
   }, [currentPage]);
 
-  const loadBoardData = async () => {
+  const loadData = async () => {
     setLoading(true);
     try {
       const data = await getBoardList({ pageIndex: currentPage });
       setBoardList(data.boardList || []);
-      setPaginationInfo(data.paginationInfo || null);
+      setPaginationInfo(data.paginationInfo);
       if (data.paginationInfo) {
         setTotalPages(
           Math.ceil(
@@ -45,7 +45,7 @@ function Board() {
         );
       }
     } catch (error) {
-      console.error("Failed to load board data:", error);
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -56,68 +56,47 @@ function Board() {
   };
 
   const columns = [
-    { Header: "게시판구분", accessor: "boardMngSeq", width: "15%", align: "left" },
-    { Header: "게시판번호", accessor: "boardSeq", width: "15%", align: "left" },
-    { Header: "게시판제목", accessor: "subject", width: "15%", align: "left" },
-    { Header: "공지여부", accessor: "noticeTopYn", width: "20%", align: "left" },
-    { Header: "공개여부", accessor: "openYn", align: "center" },
-    { Header: "사용여부", accessor: "isUse", align: "center" },
-    { Header: "열람수", accessor: "hits", align: "center" },
-    { Header: "등록일", accessor: "regDt", align: "center" },
-    { Header: "등록자", accessor: "regId", align: "center" },
-    { Header: "action", accessor: "action", align: "center" },
+    { Header: "번호", accessor: "boardSeq", align: "center", width: "10%" },
+    { Header: "제목", accessor: "subject", align: "left", width: "40%" },
+    { Header: "작성자", accessor: "regId", align: "center", width: "15%" },
+    { Header: "등록일", accessor: "regDt", align: "center", width: "15%" },
+    { Header: "조회수", accessor: "hits", align: "center", width: "10%" },
+    { Header: "상태", accessor: "isUse", align: "center", width: "10%" },
   ];
 
-  const rows = boardList.map((board) => ({
-    boardMngSeq: (
-      <MDTypography variant="caption" color="text" fontWeight="medium">
-        {board.boardMngSeq}
-      </MDTypography>
-    ),
+  const rows = boardList.map((item) => ({
     boardSeq: (
       <MDTypography variant="caption" color="text" fontWeight="medium">
-        {board.boardSeq}
+        {item.boardSeq}
       </MDTypography>
     ),
     subject: (
-      <MDTypography variant="caption" color="text" fontWeight="regular">
-        {board.subject}
-      </MDTypography>
-    ),
-    noticeTopYn: (
-      <MDTypography variant="caption" color="text" fontWeight="medium">
-        {board.noticeTopYn === "Y" ? "공지" : "일반"}
-      </MDTypography>
-    ),
-    openYn: (
-      <MDTypography variant="caption" color="text" fontWeight="regular">
-        {board.openYn === "Y" ? "공개" : "비공개"}
-      </MDTypography>
-    ),
-    isUse: (
-      <MDTypography variant="caption" color="text" fontWeight="medium">
-        {board.isUse === "Y" ? "사용" : "비사용"}
-      </MDTypography>
-    ),
-    hits: (
-      <MDTypography variant="caption" color="text" fontWeight="medium">
-        {board.hits}
-      </MDTypography>
-    ),
-    regDt: (
-      <MDTypography variant="caption" color="text" fontWeight="regular">
-        {board.regDt ? new Date(board.regDt).toLocaleDateString("ko-KR") : "-"}
+      <MDTypography variant="button" color="text" fontWeight="medium">
+        {item.subject}
       </MDTypography>
     ),
     regId: (
-      <MDTypography variant="caption" color="text" fontWeight="regular">
-        {board.regId}
+      <MDTypography variant="caption" color="text">
+        {item.regId}
       </MDTypography>
     ),
-    action: (
-      <MDTypography component="a" href="#" color="text">
-        <Icon>more_vert</Icon>
+    regDt: (
+      <MDTypography variant="caption" color="text">
+        {item.regDt}
       </MDTypography>
+    ),
+    hits: (
+      <MDTypography variant="caption" color="text">
+        {item.hits}
+      </MDTypography>
+    ),
+    isUse: (
+      <MDBadge
+        badgeContent={item.isUse === "Y" ? "사용" : "미사용"}
+        color={item.isUse === "Y" ? "success" : "secondary"}
+        variant="gradient"
+        size="sm"
+      />
     ),
   }));
 
@@ -134,12 +113,12 @@ function Board() {
                 py={3}
                 px={2}
                 variant="gradient"
-                bgColor="info"
+                bgColor="primary"
                 borderRadius="lg"
-                coloredShadow="info"
+                coloredShadow="primary"
               >
                 <MDTypography variant="h6" color="white">
-                  게시판 목록
+                  게시물 전체 조회
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>
@@ -165,13 +144,7 @@ function Board() {
                       >
                         <MDBox>
                           <MDTypography variant="caption" color="text">
-                            전체 {paginationInfo.totalRecordCount}건 중{" "}
-                            {paginationInfo.firstRecordIndex + 1} -{" "}
-                            {Math.min(
-                              paginationInfo.lastRecordIndex + 1,
-                              paginationInfo.totalRecordCount
-                            )}
-                            건 표시{" "}
+                            Total {paginationInfo.totalRecordCount} records
                           </MDTypography>
                         </MDBox>
                         <Stack spacing={2}>
@@ -199,4 +172,4 @@ function Board() {
   );
 }
 
-export default Board;
+export default BoardAll;
