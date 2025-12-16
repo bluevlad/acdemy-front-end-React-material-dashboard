@@ -68,6 +68,11 @@ import CoopBoardList from "layouts/coop/board";
 import CoopBoardWrite from "layouts/coop/board/write";
 import CoopOrderList from "layouts/coop/order";
 
+// Counsel Components
+import CounselList from "layouts/counsel";
+import CounselWrite from "layouts/counsel/write";
+import CounselDetail from "layouts/counsel/detail";
+
 // @mui icons
 import Icon from "@mui/material/Icon";
 
@@ -176,7 +181,31 @@ const routes = [
   {
     key: "coop-board-detail",
     route: "/coop/board/detail",
-    component: <CoopBoardWrite />,
+    component: <CoopBoardWrite />, // Reuse write component for detail/edit
+  },
+  {
+    type: "collapse",
+    name: "Counsel",
+    key: "counsel",
+    icon: <Icon fontSize="small">help</Icon>,
+    collapse: [
+      {
+        name: "Counsel Management",
+        key: "counsel-management",
+        route: "/counsel",
+        component: <CounselList />,
+      },
+    ],
+  },
+  {
+    key: "counsel-write",
+    route: "/counsel/write",
+    component: <CounselWrite />,
+  },
+  {
+    key: "counsel-detail",
+    route: "/counsel/detail",
+    component: <CounselDetail />,
   },
   {
     type: "collapse",
