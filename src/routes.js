@@ -73,6 +73,10 @@ import CounselList from "layouts/counsel";
 import CounselWrite from "layouts/counsel/write";
 import CounselDetail from "layouts/counsel/detail";
 
+// D-Day Components
+import DdayList from "layouts/dday";
+import DdayDetail from "layouts/dday/detail";
+
 // @mui icons
 import Icon from "@mui/material/Icon";
 
@@ -206,6 +210,19 @@ const routes = [
     key: "counsel-detail",
     route: "/counsel/detail",
     component: <CounselDetail />,
+  },
+  {
+    type: "collapse",
+    name: "D-Day",
+    key: "dday",
+    icon: <Icon fontSize="small">today</Icon>,
+    route: "/dday",
+    component: <DdayList />,
+  },
+  {
+    key: "dday-detail",
+    route: "/dday/detail",
+    component: <DdayDetail />,
   },
   {
     type: "collapse",
