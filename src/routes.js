@@ -97,6 +97,14 @@ import ProductOrderList from "layouts/order/productOrder";
 import CouponList from "layouts/order/coupon";
 import FreeOrderList from "layouts/order/freeOrder";
 
+// Lecture Components
+import OnlineLectureList from "layouts/lecture/online";
+import OnlineLectureDetail from "layouts/lecture/online/detail";
+import OfflineLectureList from "layouts/lecture/offline";
+import OfflineLectureDetail from "layouts/lecture/offline/detail";
+import LectureReplyList from "layouts/lecture/reply";
+import LectureReplyDetail from "layouts/lecture/reply/detail";
+
 // @mui icons
 import Icon from "@mui/material/Icon";
 
@@ -183,7 +191,7 @@ const routes = [
         route: "/stat",
         component: <StatList />,
       },
-    ]
+    ],
   },
   {
     type: "collapse",
@@ -237,7 +245,58 @@ const routes = [
       },
     ],
   },
+  {
+    type: "collapse",
+    name: "강의 관리",
+    key: "lecture",
+    icon: <Icon fontSize="small">school</Icon>,
+    collapse: [
+      {
+        name: "단과 강의 관리",
+        key: "online-lecture",
+        route: "/lecture/online",
+        component: <OnlineLectureList />,
+      },
+      {
+        name: "학원 강의 관리",
+        key: "offline-lecture",
+        route: "/lecture/offline",
+        component: <OfflineLectureList />,
+      },
+      {
+        name: "수강 후기 관리",
+        key: "lecture-reply",
+        route: "/lecture/reply",
+        component: <LectureReplyList />,
+      },
+    ],
+  },
   // Hidden routes for details
+  {
+    key: "online-lecture-detail",
+    route: "/lecture/online/detail",
+    component: <OnlineLectureDetail />,
+  },
+  {
+    key: "online-lecture-write",
+    route: "/lecture/online/write",
+    component: <OnlineLectureDetail />,
+  },
+  {
+    key: "offline-lecture-detail",
+    route: "/lecture/offline/detail",
+    component: <OfflineLectureDetail />,
+  },
+  {
+    key: "offline-lecture-write",
+    route: "/lecture/offline/write",
+    component: <OfflineLectureDetail />,
+  },
+  {
+    key: "lecture-reply-detail",
+    route: "/lecture/reply/detail",
+    component: <LectureReplyDetail />,
+  },
   {
     key: "event-detail",
     route: "/event/detail",
