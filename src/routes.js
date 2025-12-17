@@ -77,6 +77,16 @@ import CounselDetail from "layouts/counsel/detail";
 import DdayList from "layouts/dday";
 import DdayDetail from "layouts/dday/detail";
 
+// New Components (Event, Note, Popup, Stat, Survey)
+import EventList from "layouts/event";
+import EventDetail from "layouts/event/detail";
+import NoteList from "layouts/note";
+import NoteDetail from "layouts/note/detail";
+import PopupList from "layouts/popup";
+import PopupDetail from "layouts/popup/detail";
+import StatList from "layouts/stat";
+import SurveyList from "layouts/survey";
+
 // @mui icons
 import Icon from "@mui/material/Icon";
 
@@ -126,6 +136,60 @@ const routes = [
         component: <BoardViewManagement />,
       },
     ],
+  },
+  {
+    type: "collapse",
+    name: "서비스 관리",
+    key: "service-management",
+    icon: <Icon fontSize="small">settings_applications</Icon>,
+    collapse: [
+      {
+        name: "이벤트 관리",
+        key: "event-list",
+        route: "/event",
+        component: <EventList />,
+      },
+      {
+        name: "쪽지 관리",
+        key: "note-list",
+        route: "/note",
+        component: <NoteList />,
+      },
+      {
+        name: "팝업 관리",
+        key: "popup-list",
+        route: "/popup",
+        component: <PopupList />,
+      },
+      {
+        name: "설문조사 관리",
+        key: "survey-list",
+        route: "/survey",
+        component: <SurveyList />,
+      },
+      {
+        name: "통계 관리",
+        key: "stat-list",
+        route: "/stat",
+        component: <StatList />,
+      },
+    ]
+  },
+  // Hidden routes for details
+  {
+    key: "event-detail",
+    route: "/event/detail",
+    component: <EventDetail />,
+  },
+  {
+    key: "note-detail",
+    route: "/note/detail",
+    component: <NoteDetail />,
+  },
+  {
+    key: "popup-detail",
+    route: "/popup/detail",
+    component: <PopupDetail />,
   },
   {
     type: "collapse",
@@ -223,14 +287,6 @@ const routes = [
     key: "dday-detail",
     route: "/dday/detail",
     component: <DdayDetail />,
-  },
-  {
-    type: "collapse",
-    name: "Tables",
-    key: "tables",
-    icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/tables",
-    component: <Tables />,
   },
   {
     type: "collapse",
