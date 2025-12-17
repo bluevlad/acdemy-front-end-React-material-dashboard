@@ -322,11 +322,43 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Exam",
-    key: "Exam",
+    name: "Exam Management",
+    key: "exam-management",
     icon: <Icon fontSize="small">quiz</Icon>,
-    route: "/exam",
-    component: <Exam />,
+    collapse: [
+      {
+        name: "Sample Gosi",
+        key: "sample-gosi",
+        route: "/exam/gosi",
+        component: <GosiList />,
+      },
+      {
+        name: "Mock Test",
+        key: "mock-test",
+        route: "/exam/moui",
+        component: <MouiList />,
+      },
+    ],
+  },
+  {
+    key: "gosi-detail",
+    route: "/exam/gosi/detail",
+    component: <GosiDetail />,
+  },
+  {
+    key: "gosi-write",
+    route: "/exam/gosi/write",
+    component: <GosiDetail />,
+  },
+  {
+    key: "moui-detail",
+    route: "/exam/moui/detail",
+    component: <MouiDetail />,
+  },
+  {
+    key: "moui-write",
+    route: "/exam/moui/write",
+    component: <MouiDetail />,
   },
   {
     type: "collapse",
