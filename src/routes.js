@@ -92,6 +92,11 @@ import CategorySaleList from "layouts/manage/categorySale";
 import LectureYearList from "layouts/manage/lectureYear";
 import TeacherCalculateList from "layouts/manage/teacherCalculate";
 
+// Order Components
+import ProductOrderList from "layouts/order/productOrder";
+import CouponList from "layouts/order/coupon";
+import FreeOrderList from "layouts/order/freeOrder";
+
 // @mui icons
 import Icon from "@mui/material/Icon";
 
@@ -203,6 +208,32 @@ const routes = [
         key: "teacher-calculate",
         route: "/manage/teacher-calculate",
         component: <TeacherCalculateList />,
+      },
+    ],
+  },
+  {
+    type: "collapse",
+    name: "상품 주문 관리",
+    key: "order",
+    icon: <Icon fontSize="small">shopping_cart</Icon>,
+    collapse: [
+      {
+        name: "주문 내역",
+        key: "product-order",
+        route: "/order/product-order",
+        component: <ProductOrderList />,
+      },
+      {
+        name: "쿠폰 관리",
+        key: "coupon",
+        route: "/order/coupon",
+        component: <CouponList />,
+      },
+      {
+        name: "무료 수강 신청",
+        key: "free-order",
+        route: "/order/free-order",
+        component: <FreeOrderList />,
       },
     ],
   },

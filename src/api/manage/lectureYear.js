@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import superagent from "superagent";
 import { BASE_API } from "../../constants/index";
 
