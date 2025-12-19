@@ -41,6 +41,10 @@ import Tables from "layouts/tables";
 import Billing from "layouts/billing";
 import Member from "layouts/member";
 import Exam from "layouts/exam";
+import GosiList from "layouts/exam/gosi";
+import GosiDetail from "layouts/exam/gosi/detail";
+import MouiList from "layouts/exam/moui";
+import MouiDetail from "layouts/exam/moui/detail";
 import Menu from "layouts/menu";
 import Profile from "layouts/profile";
 // Board Components

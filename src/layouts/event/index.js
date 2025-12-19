@@ -60,9 +60,7 @@ function EventList() {
                     ),
                     period: (
                         <MDTypography variant="caption" color="text" fontWeight="medium">
-                            {item.START_DT && item.END_DT
-                                ? `${item.START_DT} ~ ${item.END_DT}`
-                                : "기간 미설정"}
+                            {item.START_DT && item.END_DT ? `${item.START_DT} ~ ${item.END_DT}` : "기간 미설정"}
                         </MDTypography>
                     ),
                     useYn: (
@@ -125,11 +123,7 @@ function EventList() {
                                 <MDTypography variant="h6" color="white">
                                     이벤트 관리
                                 </MDTypography>
-                                <MDButton
-                                    variant="gradient"
-                                    color="dark"
-                                    onClick={() => navigate("/event/detail")}
-                                >
+                                <MDButton variant="gradient" color="dark" onClick={() => navigate("/event/detail")}>
                                     <Icon sx={{ fontWeight: "bold" }}>add</Icon>
                                     &nbsp;등록
                                 </MDButton>
