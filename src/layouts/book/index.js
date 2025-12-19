@@ -20,6 +20,7 @@ import bookListData from "layouts/book/data/bookListData";
 // API
 import { fetchBookList } from "api/book";
 import { useNavigate } from "react-router-dom";
+import { createPaginationParams } from "utils/commonUtils";
 
 function BookList() {
     const [tableData, setTableData] = useState(bookListData([]));
@@ -29,7 +30,7 @@ function BookList() {
         const loadData = async () => {
             // Fetch data
             // Using pageRow 100 to show more data for now
-            const params = { currentPage: 1, pageRow: 100 };
+            const params = createPaginationParams({ pageIndex: 1, pageRow: 100 });
             const result = await fetchBookList(params);
 
             if (result && result.list) {

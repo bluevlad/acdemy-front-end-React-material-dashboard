@@ -9,7 +9,9 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
+// API
 import { getSampleUserList } from "api/exam/gosi";
+import { createPaginationParams } from "utils/commonUtils";
 
 function GosiList() {
     const navigate = useNavigate();
@@ -30,10 +32,8 @@ function GosiList() {
 
     const fetchData = async () => {
         try {
-            const response = await getSampleUserList({
-                currentPageReply: 1,
-                pageRowReply: 100 // Using consistent pagination params if applicable, or default
-            });
+            const params = createPaginationParams({ pageIndex: 1 });
+            const response = await getSampleUserList(params);
             if (response && response.data) {
                 setRows(
                     response.data.map((item, index) => ({

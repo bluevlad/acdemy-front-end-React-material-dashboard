@@ -19,6 +19,7 @@ import DataTable from "examples/Tables/DataTable";
 
 // API
 import { getBoardList } from "api/board";
+import { createPaginationParams } from "utils/commonUtils";
 
 function Board() {
   const [boardList, setBoardList] = useState([]);
@@ -34,7 +35,8 @@ function Board() {
   const loadBoardData = async () => {
     setLoading(true);
     try {
-      const data = await getBoardList({ pageIndex: currentPage });
+      const params = createPaginationParams({ pageIndex: currentPage });
+      const data = await getBoardList(params);
       setBoardList(data.boardList || []);
       setPaginationInfo(data.paginationInfo || null);
       if (data.paginationInfo) {

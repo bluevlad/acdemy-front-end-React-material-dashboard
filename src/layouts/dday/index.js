@@ -25,6 +25,7 @@ import ddayListData from "layouts/dday/data/ddayListData";
 
 // API
 import { fetchDdayList, fetchDdayCategoryList } from "api/dday";
+import { createPaginationParams } from "utils/commonUtils";
 
 function DdayList() {
     const navigate = useNavigate();
@@ -51,7 +52,8 @@ function DdayList() {
 
     const loadData = async () => {
         setLoading(true);
-        const result = await fetchDdayList(searchParams);
+        const params = createPaginationParams(searchParams);
+        const result = await fetchDdayList(params);
         if (result && result.list) {
             setTableData(ddayListData(result.list));
         }

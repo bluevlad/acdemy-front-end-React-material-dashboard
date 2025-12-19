@@ -9,7 +9,9 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
+// API
 import { getMouiExamList } from "api/exam/moui";
+import { createPaginationParams } from "utils/commonUtils";
 
 function MouiList() {
     const navigate = useNavigate();
@@ -30,10 +32,8 @@ function MouiList() {
 
     const fetchData = async () => {
         try {
-            const response = await getMouiExamList({
-                currentPageReply: 1,
-                pageRowReply: 100
-            });
+            const params = createPaginationParams({ pageIndex: 1 });
+            const response = await getMouiExamList(params);
             if (response && response.data) {
                 setRows(
                     response.data.map((item, index) => ({

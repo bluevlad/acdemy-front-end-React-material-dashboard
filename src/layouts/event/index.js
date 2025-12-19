@@ -18,6 +18,7 @@ import DataTable from "examples/Tables/DataTable";
 
 // API
 import { getEventList } from "api/event";
+import { createPaginationParams } from "utils/commonUtils";
 
 function EventList() {
     const navigate = useNavigate();
@@ -81,7 +82,8 @@ function EventList() {
     const loadData = async () => {
         setLoading(true);
         try {
-            const result = await getEventList(searchParams);
+            const params = createPaginationParams(searchParams);
+            const result = await getEventList(params);
             if (result && result.list) {
                 setTableData(formatTableData(result.list));
             }

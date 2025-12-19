@@ -48,3 +48,18 @@ export const formatDate = (date, format = "YYYY-MM-DD") => {
 
   return format.replace("YYYY", year).replace("MM", month).replace("DD", day);
 };
+
+/**
+ * 기본 페이징/검색 파라미터 생성
+ * @param {Object} params - 덮어쓸 파라미터 (선택적)
+ * @returns {Object} 기본값이 적용된 파라미터 객체
+ */
+export const createPaginationParams = (params = {}) => {
+  return {
+    searchCondition: "all", // 검색조건 (기본값: all)
+    searchKeyword: "", // 검색Keyword
+    searchUseYn: "Y", // 검색사용여부 (기본값: Y)
+    pageIndex: 1, // 현재페이지 (기본값: 1)
+    ...params,
+  };
+};
