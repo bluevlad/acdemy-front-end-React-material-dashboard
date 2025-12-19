@@ -1,11 +1,11 @@
 # Menu API
 
-시스템 메뉴(Menu) 관리와 관련된 API 함수들을 정의합니다.
+Provides functions to manage the user menu.
 
-## 📑 주요 기능
+## Files
+- `index.js`
 
-- **메뉴 조회**: 관리자/사용자 메뉴 트리 구조 조회
+## Functions
 
-## 🛠 함수 목록
-
-- `fetchMenuTree(params)`: 전체 메뉴 트리 구조를 조회합니다.
+### `fetchMenuTree()`
+Fetches the menu tree structure.

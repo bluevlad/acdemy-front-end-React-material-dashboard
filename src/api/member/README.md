@@ -1,12 +1,14 @@
 # Member API
 
-회원(Member) 관리와 관련된 API 함수들을 정의합니다.
+Provides functions to manage members.
 
-## 👥 주요 기능
+## Files
+- `index.js`
 
-- **회원 관리**: 전체 회원 목록 조회 및 검색
+## Functions
 
-## 🛠 함수 목록
+### `getMemberList()`
+Fetches a list of members.
 
-- `fetchMemberList(params)`: 회원 목록을 조회합니다.
-- `fetchMemberDetail(params)`: (예정) 회원 상세 정보를 조회합니다.
+### `getMemberDetail()`
+Fetches member details.

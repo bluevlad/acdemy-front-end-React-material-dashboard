@@ -1,12 +1,28 @@
 # Board API
 
-게시판(Board) 게시글 관리와 관련된 API 함수들을 정의합니다.
+Provides functions to manage bulletins and boards.
 
-## 📝 주요 기능
+## Files
+- `index.js`
 
-- **게시글 관리**: 공지사항, FAQ 등 게시판 목록 조회 및 상세 보기
+## Functions
 
-## 🛠 함수 목록
+### `getBoardList(params)`
+Fetches a list of board posts.
+- **Params**:
+  - `pageIndex`: Current page number.
+  - `searchCondition`: Search condition.
+  - `searchKeyword`: Search keyword.
+  - `searchUseYn`: Usage status filter.
 
-- `fetchBoardList(params)`: 게시판 목록을 조회합니다.
-- `fetchBoardDetail(params)`: 게시글 상세 내용을 조회합니다.
+### `getBoardDetail(params)`
+Fetches details of a board post.
+
+### `insertBoard(data)`
+Registers a new board post.
+
+### `updateBoard(data)`
+Updates an existing board post.
+
+### `deleteBoard(data)`
+Deletes a board post.
