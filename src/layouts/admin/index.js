@@ -23,67 +23,67 @@ import AdminBanner from "layouts/admin/banner";
 import Menu from "layouts/menu"; // Re-use existing Menu layout
 
 function Admin() {
-    const [tabValue, setTabValue] = useState(0);
+  const [tabValue, setTabValue] = useState(0);
 
-    const handleSetTabValue = (event, newValue) => setTabValue(newValue);
+  const handleSetTabValue = (event, newValue) => setTabValue(newValue);
 
-    return (
-        <DashboardLayout>
-            <DashboardNavbar />
-            <MDBox py={3}>
-                <Grid container spacing={3}>
-                    <Grid item xs={12}>
-                        <MDBox mb={3}>
-                            <AppBar position="static">
-                                <Tabs orientation="horizontal" value={tabValue} onChange={handleSetTabValue}>
-                                    <Tab
-                                        label="권한 관리"
-                                        icon={
-                                            <Icon fontSize="medium" sx={{ mt: -0.25 }}>
-                                                manage_accounts
-                                            </Icon>
-                                        }
-                                    />
-                                    <Tab
-                                        label="코드 관리"
-                                        icon={
-                                            <Icon fontSize="medium" sx={{ mt: -0.25 }}>
-                                                code
-                                            </Icon>
-                                        }
-                                    />
-                                    <Tab
-                                        label="메뉴 관리"
-                                        icon={
-                                            <Icon fontSize="medium" sx={{ mt: -0.25 }}>
-                                                menu
-                                            </Icon>
-                                        }
-                                    />
-                                    <Tab
-                                        label="배너 관리"
-                                        icon={
-                                            <Icon fontSize="medium" sx={{ mt: -0.25 }}>
-                                                image
-                                            </Icon>
-                                        }
-                                    />
-                                </Tabs>
-                            </AppBar>
-                        </MDBox>
-
-                        <MDBox>
-                            {tabValue === 0 && <AdminAuth />}
-                            {tabValue === 1 && <AdminCode />}
-                            {tabValue === 2 && <Menu />}
-                            {tabValue === 3 && <AdminBanner />}
-                        </MDBox>
-                    </Grid>
-                </Grid>
+  return (
+    <DashboardLayout>
+      <DashboardNavbar />
+      <MDBox py={3}>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <MDBox mb={3}>
+              <AppBar position="static">
+                <Tabs orientation="horizontal" value={tabValue} onChange={handleSetTabValue}>
+                  <Tab
+                    label="권한 관리"
+                    icon={
+                      <Icon fontSize="medium" sx={{ mt: -0.25 }}>
+                        manage_accounts
+                      </Icon>
+                    }
+                  />
+                  <Tab
+                    label="코드 관리"
+                    icon={
+                      <Icon fontSize="medium" sx={{ mt: -0.25 }}>
+                        code
+                      </Icon>
+                    }
+                  />
+                  <Tab
+                    label="메뉴 관리"
+                    icon={
+                      <Icon fontSize="medium" sx={{ mt: -0.25 }}>
+                        menu
+                      </Icon>
+                    }
+                  />
+                  <Tab
+                    label="배너 관리"
+                    icon={
+                      <Icon fontSize="medium" sx={{ mt: -0.25 }}>
+                        image
+                      </Icon>
+                    }
+                  />
+                </Tabs>
+              </AppBar>
             </MDBox>
-            <Footer />
-        </DashboardLayout>
-    );
+
+            <MDBox>
+              {tabValue === 0 && <AdminAuth />}
+              {tabValue === 1 && <AdminCode />}
+              {tabValue === 2 && <Menu />}
+              {tabValue === 3 && <AdminBanner />}
+            </MDBox>
+          </Grid>
+        </Grid>
+      </MDBox>
+      <Footer />
+    </DashboardLayout>
+  );
 }
 
 export default Admin;

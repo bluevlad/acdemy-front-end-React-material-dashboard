@@ -29,124 +29,124 @@ import coopOrderData from "layouts/coop/order/data/coopOrderData";
 import { fetchCoopOrderList, fetchCoopPayDetailList } from "api/coop";
 
 function CoopOrderList() {
-    const [tableData, setTableData] = useState({ columns: [], rows: [] });
-    const [searchParams, setSearchParams] = useState({
-        SEARCHTEXT: "",
-        pageIndex: 1,
-        pageUnit: 20
-    });
-    const [loading, setLoading] = useState(false);
+  const [tableData, setTableData] = useState({ columns: [], rows: [] });
+  const [searchParams, setSearchParams] = useState({
+    SEARCHTEXT: "",
+    pageIndex: 1,
+    pageUnit: 20
+  });
+  const [loading, setLoading] = useState(false);
 
-    // Payment Detail Modal
-    const [openDetail, setOpenDetail] = useState(false);
-    const [currentOrder, setCurrentOrder] = useState(null);
-    const [payDetails, setPayDetails] = useState([]);
+  // Payment Detail Modal
+  const [openDetail, setOpenDetail] = useState(false);
+  const [currentOrder, setCurrentOrder] = useState(null);
+  const [payDetails, setPayDetails] = useState([]);
 
-    const loadData = async () => {
-        setLoading(true);
-        const result = await fetchCoopOrderList(searchParams);
-        if (result && result.coopOrderList) {
-            setTableData(coopOrderData(result.coopOrderList, handleOpenDetail));
-        }
-        setLoading(false);
-    };
+  const loadData = async () => {
+    setLoading(true);
+    const result = await fetchCoopOrderList(searchParams);
+    if (result && result.coopOrderList) {
+      setTableData(coopOrderData(result.coopOrderList, handleOpenDetail));
+    }
+    setLoading(false);
+  };
 
-    useEffect(() => {
-        loadData();
-    }, [searchParams.pageIndex]);
+  useEffect(() => {
+    loadData();
+  }, [searchParams.pageIndex]);
 
-    const handleSearch = () => {
-        setSearchParams(prev => ({ ...prev, pageIndex: 1 }));
-        loadData();
-    };
+  const handleSearch = () => {
+    setSearchParams(prev => ({ ...prev, pageIndex: 1 }));
+    loadData();
+  };
 
-    const handleOpenDetail = async (item) => {
-        setCurrentOrder(item);
-        const result = await fetchCoopPayDetailList({ ORDERNO: item.ORDERNO });
-        if (result && result.coopPayDetailList) {
-            setPayDetails(result.coopPayDetailList);
-        } else {
-            setPayDetails([]);
-        }
-        setOpenDetail(true);
-    };
+  const handleOpenDetail = async (item) => {
+    setCurrentOrder(item);
+    const result = await fetchCoopPayDetailList({ ORDERNO: item.ORDERNO });
+    if (result && result.coopPayDetailList) {
+      setPayDetails(result.coopPayDetailList);
+    } else {
+      setPayDetails([]);
+    }
+    setOpenDetail(true);
+  };
 
-    return (
-        <DashboardLayout>
-            <DashboardNavbar />
-            <MDBox pt={6} pb={3}>
-                <Grid container spacing={6}>
-                    <Grid item xs={12}>
-                        <Card>
-                            <MDBox
-                                mx={2}
-                                mt={-3}
-                                py={3}
-                                px={2}
-                                variant="gradient"
-                                bgColor="info"
-                                borderRadius="lg"
-                                coloredShadow="info"
-                            >
-                                <MDTypography variant="h6" color="white">
-                                    제휴사 주문 관리
-                                </MDTypography>
-                            </MDBox>
+  return (
+    <DashboardLayout>
+      <DashboardNavbar />
+      <MDBox pt={6} pb={3}>
+        <Grid container spacing={6}>
+          <Grid item xs={12}>
+            <Card>
+              <MDBox
+                mx={2}
+                mt={-3}
+                py={3}
+                px={2}
+                variant="gradient"
+                bgColor="info"
+                borderRadius="lg"
+                coloredShadow="info"
+              >
+                <MDTypography variant="h6" color="white">
+                  제휴사 주문 관리
+                </MDTypography>
+              </MDBox>
 
-                            <MDBox p={3}>
-                                <MDBox display="flex" mb={2}>
-                                    <MDInput
-                                        label="검색어 (주문자, 주문번호)"
-                                        value={searchParams.SEARCHTEXT}
-                                        onChange={(e) => setSearchParams(prev => ({ ...prev, SEARCHTEXT: e.target.value }))}
-                                        sx={{ marginRight: 2 }}
-                                    />
-                                    <MDButton variant="gradient" color="info" onClick={handleSearch}>
-                                        검색
-                                    </MDButton>
-                                </MDBox>
+              <MDBox p={3}>
+                <MDBox display="flex" mb={2}>
+                  <MDInput
+                    label="검색어 (주문자, 주문번호)"
+                    value={searchParams.SEARCHTEXT}
+                    onChange={(e) => setSearchParams(prev => ({ ...prev, SEARCHTEXT: e.target.value }))}
+                    sx={{ marginRight: 2 }}
+                  />
+                  <MDButton variant="gradient" color="info" onClick={handleSearch}>
+                    검색
+                  </MDButton>
+                </MDBox>
 
-                                {loading ? (
-                                    <MDTypography>Loading...</MDTypography>
-                                ) : (
-                                    <DataTable
-                                        table={tableData}
-                                        isSorted={false}
-                                        entriesPerPage={false}
-                                        showTotalEntries={false}
-                                        noEndBorder
-                                    />
-                                )}
-                            </MDBox>
-                        </Card>
-                    </Grid>
-                </Grid>
-            </MDBox>
+                {loading ? (
+                  <MDTypography>Loading...</MDTypography>
+                ) : (
+                  <DataTable
+                    table={tableData}
+                    isSorted={false}
+                    entriesPerPage={false}
+                    showTotalEntries={false}
+                    noEndBorder
+                  />
+                )}
+              </MDBox>
+            </Card>
+          </Grid>
+        </Grid>
+      </MDBox>
 
-            {/* Payment Detail Dialog */}
-            <Dialog open={openDetail} onClose={() => setOpenDetail(false)} maxWidth="sm" fullWidth>
-                <DialogTitle>결제 상세 - {currentOrder?.ORDERNO}</DialogTitle>
-                <DialogContent>
-                    <List>
-                        {payDetails.map((detail, index) => (
-                            <ListItem key={index} divider>
-                                <ListItemText
-                                    primary={detail.PRODUCT_NAME || "상품명 없음"}
-                                    secondary={`금액: ${Number(detail.PRICE).toLocaleString()}원 | 상태: ${detail.STATUS_NM}`}
-                                />
-                            </ListItem>
-                        ))}
-                        {payDetails.length === 0 && <MDTypography variant="button">상세 내역이 없습니다.</MDTypography>}
-                    </List>
-                </DialogContent>
-                <DialogActions>
-                    <MDButton color="secondary" onClick={() => setOpenDetail(false)}>닫기</MDButton>
-                </DialogActions>
-            </Dialog>
+      {/* Payment Detail Dialog */}
+      <Dialog open={openDetail} onClose={() => setOpenDetail(false)} maxWidth="sm" fullWidth>
+        <DialogTitle>결제 상세 - {currentOrder?.ORDERNO}</DialogTitle>
+        <DialogContent>
+          <List>
+            {payDetails.map((detail, index) => (
+              <ListItem key={index} divider>
+                <ListItemText
+                  primary={detail.PRODUCT_NAME || "상품명 없음"}
+                  secondary={`금액: ${Number(detail.PRICE).toLocaleString()}원 | 상태: ${detail.STATUS_NM}`}
+                />
+              </ListItem>
+            ))}
+            {payDetails.length === 0 && <MDTypography variant="button">상세 내역이 없습니다.</MDTypography>}
+          </List>
+        </DialogContent>
+        <DialogActions>
+          <MDButton color="secondary" onClick={() => setOpenDetail(false)}>닫기</MDButton>
+        </DialogActions>
+      </Dialog>
 
-            <Footer />
-        </DashboardLayout>
-    );
+      <Footer />
+    </DashboardLayout>
+  );
 }
 
 export default CoopOrderList;

@@ -96,7 +96,9 @@ export const updatePayKind = async (data) => {
 // 입금 상태 업데이트
 export const updateDepositStatus = async (data) => {
   try {
-    const response = await superagent.put(`${BASE_API}/productorder/updateDepositStatus`).send(data);
+    const response = await superagent
+      .put(`${BASE_API}/productorder/updateDepositStatus`)
+      .send(data);
     return response.body;
   } catch (error) {
     console.error("Error updating deposit status:", error);
@@ -195,7 +197,9 @@ export const getPointHistory = async (params) => {
 // 회원 쿠폰 목록
 export const getMemberCouponList = async (params) => {
   try {
-    const response = await superagent.get(`${BASE_API}/productorder/memberCouponList`).query(params);
+    const response = await superagent
+      .get(`${BASE_API}/productorder/memberCouponList`)
+      .query(params);
     return response.body;
   } catch (error) {
     console.error("Error fetching member coupon list:", error);
@@ -217,7 +221,9 @@ export const getMemberClassList = async (params) => {
 // 회원 강의 목록 (오프라인)
 export const getMemberOffClassList = async (params) => {
   try {
-    const response = await superagent.get(`${BASE_API}/productorder/memberOffClassList`).query(params);
+    const response = await superagent
+      .get(`${BASE_API}/productorder/memberOffClassList`)
+      .query(params);
     return response.body;
   } catch (error) {
     console.error("Error fetching member off class list:", error);

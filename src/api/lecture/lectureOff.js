@@ -63,7 +63,9 @@ export const deleteLectureOff = async (data) => {
 // 강의 브릿지 목록 조회
 export const getLectureBridgeList = async (params) => {
   try {
-    const response = await superagent.get(`${BASE_API}/lectureOff/getLectureBridgeList`).query(params);
+    const response = await superagent
+      .get(`${BASE_API}/lectureOff/getLectureBridgeList`)
+      .query(params);
     return response.body;
   } catch (error) {
     console.error("Error fetching lecture bridge list:", error);
@@ -96,7 +98,9 @@ export const deleteLectureBridge = async (data) => {
 // 강의 교재 목록 조회
 export const getLectureBookList = async (params) => {
   try {
-    const response = await superagent.get(`${BASE_API}/lectureOff/getLectureBookList`).query(params);
+    const response = await superagent
+      .get(`${BASE_API}/lectureOff/getLectureBookList`)
+      .query(params);
     return response.body;
   } catch (error) {
     console.error("Error fetching lecture book list:", error);
@@ -140,7 +144,9 @@ export const deleteLectureBook = async (data) => {
 // 강의 일정 목록 조회
 export const getLectureDateList = async (params) => {
   try {
-    const response = await superagent.get(`${BASE_API}/lectureOff/getLectureDateList`).query(params);
+    const response = await superagent
+      .get(`${BASE_API}/lectureOff/getLectureDateList`)
+      .query(params);
     return response.body;
   } catch (error) {
     console.error("Error fetching lecture date list:", error);
@@ -173,7 +179,9 @@ export const deleteLectureDate = async (data) => {
 // 종합반 강의 목록 조회
 export const getJongLectureList = async (params) => {
   try {
-    const response = await superagent.get(`${BASE_API}/lectureOff/getJongLectureList`).query(params);
+    const response = await superagent
+      .get(`${BASE_API}/lectureOff/getJongLectureList`)
+      .query(params);
     return response.body;
   } catch (error) {
     console.error("Error fetching jong lecture list:", error);
@@ -184,7 +192,9 @@ export const getJongLectureList = async (params) => {
 // 종합반 강의 상세 조회
 export const getJongLectureDetail = async (params) => {
   try {
-    const response = await superagent.get(`${BASE_API}/lectureOff/getJongLectureDetail`).query(params);
+    const response = await superagent
+      .get(`${BASE_API}/lectureOff/getJongLectureDetail`)
+      .query(params);
     return response.body;
   } catch (error) {
     console.error("Error fetching jong lecture detail:", error);
@@ -228,7 +238,9 @@ export const deleteJongLecture = async (data) => {
 // 종합반 강의 구성 목록 조회
 export const getJongLectureDetailList = async (params) => {
   try {
-    const response = await superagent.get(`${BASE_API}/lectureOff/getJongLectureDetailList`).query(params);
+    const response = await superagent
+      .get(`${BASE_API}/lectureOff/getJongLectureDetailList`)
+      .query(params);
     return response.body;
   } catch (error) {
     console.error("Error fetching jong lecture detail list:", error);
@@ -239,7 +251,9 @@ export const getJongLectureDetailList = async (params) => {
 // 종합반 강의 구성 등록
 export const insertJongLectureDetail = async (data) => {
   try {
-    const response = await superagent.post(`${BASE_API}/lectureOff/insertJongLectureDetail`).send(data);
+    const response = await superagent
+      .post(`${BASE_API}/lectureOff/insertJongLectureDetail`)
+      .send(data);
     return response.body;
   } catch (error) {
     console.error("Error inserting jong lecture detail:", error);
@@ -250,7 +264,9 @@ export const insertJongLectureDetail = async (data) => {
 // 종합반 강의 구성 삭제
 export const deleteJongLectureDetail = async (data) => {
   try {
-    const response = await superagent.post(`${BASE_API}/lectureOff/deleteJongLectureDetail`).send(data);
+    const response = await superagent
+      .post(`${BASE_API}/lectureOff/deleteJongLectureDetail`)
+      .send(data);
     return response.body;
   } catch (error) {
     console.error("Error deleting jong lecture detail:", error);
