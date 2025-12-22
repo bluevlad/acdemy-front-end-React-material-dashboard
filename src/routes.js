@@ -51,7 +51,7 @@ import Profile from "layouts/profile";
 import Board from "layouts/board";
 import BoardAll from "layouts/board/boardAll";
 import BoardManagement from "layouts/board/boardManagement";
-import BoardNotAnswer from "layouts/board/boardNotAnswer";
+
 import BoardViewManagement from "layouts/board/boardViewManagement";
 // Admin Components
 import AdminCode from "layouts/admin/code";
@@ -145,12 +145,7 @@ const routes = [
         route: "/board/management",
         component: <BoardManagement />,
       },
-      {
-        name: "미응답 게시물 관리",
-        key: "board-not-answer",
-        route: "/board/not-answer",
-        component: <BoardNotAnswer />,
-      },
+
       {
         name: "게시판 뷰 관리",
         key: "board-view-management",

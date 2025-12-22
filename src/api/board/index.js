@@ -90,17 +90,6 @@ export const getBoardList = async (params) => {
   }
 };
 
-// 미응답 게시판 목록 조회
-export const getBoardNotAnswerList = async (params) => {
-  try {
-    const response = await superagent.get(`${BASE_API}/board/getBoardNotAnswerList`).query(params);
-    return response.body;
-  } catch (error) {
-    console.error("Error fetching board display list:", error); // Assuming display list logic for now
-    throw error;
-  }
-};
-
 // 게시판 상세 조회
 export const getBoardDetail = async (params) => {
   try {
