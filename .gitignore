@@ -2,3 +2,4 @@ node_modules
 .gemini
 .env
 .DS_Store
+/actions-runner/
