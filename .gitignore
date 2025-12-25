@@ -2,3 +2,5 @@ node_modules
 .gemini
 .env
 .DS_Store
+/build/
+.gitignore
