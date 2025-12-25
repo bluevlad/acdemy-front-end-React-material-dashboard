@@ -73,6 +73,32 @@ Academy Front-End는 학원 관리를 위한 현대적인 웹 애플리케이션
 - **React ChartJS 2** - 차트 시각화
 - **ChromaJS** - 색상 변환
 
+## 🔒 보안 및 배포 (Security & Deployment)
+
+### 보안 설정 (Security Configuration)
+
+이 프로젝트는 보안을 위해 다음과 같은 디렉토리와 파일을 Git 추적에서 제외합니다:
+
+- **`actions-runner/`**: GitHub Actions Self-Hosted Runner 설정 및 로그 파일 (인증 정보 포함)
+- **`.env` files**: API 키, DB 비밀번호 등 민감한 환경 변수
+
+**주의사항**:
+- `actions-runner` 폴더는 절대 원격 저장소에 업로드되어서는 안 됩니다.
+- 환경 변수가 필요한 경우 GitHub Secrets를 통해 관리하거나 서버에 직접 로컬 파일을 생성해야 합니다.
+
+### CI/CD 파이프라인
+
+GitHub Actions를 사용하여 `prod` 브랜치에 푸시될 때 자동으로 배포가 진행됩니다.
+
+1. **Self-Hosted Runner**: 로컬 머신(Windows)에서 실행 중인 Runner가 작업을 감지합니다.
+2. **트리거**: `prod` 브랜치에 코드가 푸시되면 워크플로우가 시작됩니다 (`.github/workflows/deploy-prod.yml`).
+3. **배포 단계**:
+    - 최신 코드를 체크아웃합니다.
+    - 기존 Docker 컨테이너를 종료하고 정리합니다 (`docker-compose down`).
+    - 이미지를 다시 빌드하고 컨테이너를 실행합니다 (`docker-compose up -d --build`).
+
+이 프로세스는 민감한 `actions-runner` 정보가 노출되지 않은 상태에서 안전하게 자동 배포를 수행합니다.
+
 ## 🚀 시작하기
 
 ### 필수 요구사항
