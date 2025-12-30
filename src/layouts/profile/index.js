@@ -48,30 +48,44 @@ function Overview() {
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox mb={2} />
-      <Header>
+      <Header user={user}>
         <MDBox mt={5} mb={3}>
           <Grid container spacing={1}>
             <Grid item xs={12} md={6} xl={4}>
-              <PlatformSettings />
+              <PlatformSettings user={user} />
             </Grid>
             <Grid item xs={12} md={6} xl={4} sx={{ display: "flex" }}>
               <Divider orientation="vertical" sx={{ ml: -2, mr: 1 }} />
               {user ? (
                 <ProfileInfoCard
                   title="profile information"
-                  description={`Hello, ${user.userNm || user.userId || "User"}`}
+                  description={`${user.memo || user.userNm || user.userId}`}
                   info={{
                     fullName: user.userNm || user.userId || "",
-                    id: user.userId || "",
+                    userId: user.userId || "",
                     email: user.email || "",
-                    role: user.userRole || "",
-                    address: user.address1 ? `${user.address1} ${user.address2 || ""}` : "",
+                    location: user.address1
+                      ? `${user.address1} ${user.address2 || ""}`
+                      : "Unspecified",
+                    birthDay: user.birthDay || "Unspecified",
+                    sex: user.sex || "Unspecified",
+                    point: user.userPoint ? `${user.userPoint}` : "0",
                   }}
                   social={[
                     {
                       link: "https://www.facebook.com/",
                       icon: <FacebookIcon />,
                       color: "facebook",
+                    },
+                    {
+                      link: "https://twitter.com/",
+                      icon: <TwitterIcon />,
+                      color: "twitter",
+                    },
+                    {
+                      link: "https://www.instagram.com/",
+                      icon: <InstagramIcon />,
+                      color: "instagram",
                     },
                   ]}
                   action={{ route: "", tooltip: "Edit Profile" }}

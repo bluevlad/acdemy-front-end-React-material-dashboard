@@ -17,8 +17,8 @@ import { login } from "api/login";
 
 function Basic() {
   const [rememberMe, setRememberMe] = useState(false);
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
+  const [userId, setUserId] = useState("");
+  const [userPwd, setUserPwd] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -29,7 +29,7 @@ function Basic() {
     setError("");
     try {
       const token = sessionStorage.getItem("token") || "";
-      const payload = { userId: id, userPwd: password, token: token };
+      const payload = { userId, userPwd, token };
 
       const response = await login(payload);
 
@@ -107,8 +107,8 @@ function Basic() {
                 type="text"
                 label="ID"
                 fullWidth
-                value={id}
-                onChange={(e) => setId(e.target.value)}
+                value={userId}
+                onChange={(e) => setUserId(e.target.value)}
               />
             </MDBox>
             <MDBox mb={2}>
@@ -116,8 +116,8 @@ function Basic() {
                 type="password"
                 label="Password"
                 fullWidth
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={userPwd}
+                onChange={(e) => setUserPwd(e.target.value)}
               />
             </MDBox>
             <MDBox display="flex" alignItems="center" ml={-1}>
